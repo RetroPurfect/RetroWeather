@@ -16,9 +16,12 @@ This release includes attribution and distribution notices.
 
 ## Download
 
-Use this repository's **Releases** page for the installer, player source,
-matching network-helper source and checksums. The `docs/` website automatically
-links to these assets when served through this repository's GitHub Pages address.
+- [Official website](https://retropurfect.github.io/RetroWeather/)
+- [Download the v1.2.1 Windows installer](https://github.com/RetroPurfect/RetroWeather/releases/download/v1.2.1/RetroWeather_Setup_v1.2.1.exe)
+- [All v1.2.1 downloads, source archives and SHA-256 checksums](https://github.com/RetroPurfect/RetroWeather/releases/tag/v1.2.1)
+- [Report a bug or request a feature](https://github.com/RetroPurfect/RetroWeather/issues/new/choose)
+
+The website is hosted free on GitHub Pages from `main/docs`.
 
 ## Build
 
