@@ -1,0 +1,15 @@
+Retro Weather v1.2.1 public release candidate — native retest pending.
+
+Parent v1.2 was accepted by the user on a Dell Inspiron 6400, Core 2 Duo T7400,
+ATI X1300, Windows XP SP3, fullscreen 720x480/60 Hz output to a 4:3 CRT.
+Its Test21 benchmark completed 11/11 stages and all nine pages; the user
+confirmed the physical appearance and audio behavior. That historical evidence
+does not certify this patch. The preserved v1.2 master retains its original logs.
+
+This revision changes attribution, Help links and distribution notices.
+See VALIDATION.txt for current host regression and build results.
+Before public stable promotion: test installation/upgrade, normal and CRT
+footer readability, Help links, screensaver M behavior and full benchmark.
+Windows XP through Windows 11 are compatibility targets, not a certification
+of every hardware/OS/driver combination. MP4 recording requires supported
+Windows 7+ media components; XP uses text-only diagnostics.

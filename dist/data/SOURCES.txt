@@ -1,0 +1,28 @@
+OFFLINE DATA FOR RETRO WEATHER v0.5
+
+Moon primary phases and daily illumination: calculated at build time with
+PyMeeus 0.5.12 (Meeus algorithms), using TT-to-UT delta-T estimates.
+Coverage: 2020-2050 (guard dates through January 2051).
+Phase times are rounded to a minute; displayed dates use the selected ZIP
+zone. Daily illumination is interpolated and labeled approximate.
+https://pymeeus.readthedocs.io/en/latest/bodies/Moon.html
+https://pymeeus.readthedocs.io/en/latest/core/Epoch.html
+Validation reference: 2024-04-08 new moon 18:21 UTC from USNO / NASA SKYCAL.
+https://aa.usno.navy.mil/calculated/moon/phases?date=2024-4-08&format=p&nump=5&submit=Get+Data
+https://eclipse.gsfc.nasa.gov/SKYCAL/SKYCAL.html?cal=2024
+
+USNO API returned HTTP 503 during preparation, so the application uses the
+bundled calculations and does not depend on that API being available.
+
+Time zones: build-time IANA tzdata via Python zoneinfo. US states and US
+postal territories, 2020-2050, with per-transition offsets for DST.
+Outside the table's range or unknown zone names, the last Open-Meteo offset
+is used; it may be stale across DST until the next successful refresh.
+Future governmental rule changes require an updated data pack.
+https://www.iana.org/time-zones
+
+Holiday rules: 11 federal holidays and Valentine's Day, Easter Sunday,
+Mother's Day, Father's Day, Halloween. Fixed federal holidays get separate
+observed entries for Saturday (Friday) or Sunday (Monday).
+https://www.opm.gov/policy-data-oversight/pay-leave/federal-holidays/
+The list describes holidays, not regional business or school closures.

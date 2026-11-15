@@ -1,0 +1,79 @@
+ lib/curl_sspi.c   |  8 ++------
+ lib/curlx/fopen.c | 24 ++++++------------------
+ 2 files changed, 8 insertions(+), 24 deletions(-)
+
+diff --git a/lib/curl_sspi.c b/lib/curl_sspi.c
+index 3ea1762..63fcee9 100644
+--- a/lib/curl_sspi.c
++++ b/lib/curl_sspi.c
+@@ -139,12 +139,8 @@ CURLcode Curl_create_sspi_identity(const char *userp, const char *passwdp,
+     curlx_free(useranddomain.tchar_ptr);
+     return CURLE_OUT_OF_MEMORY;
+   }
+-  if(_tcsncpy_s(dup_domain.tchar_ptr, domlen + 1, domain.tchar_ptr, domlen)) {
+-    curlx_free(dup_user.tchar_ptr);
+-    curlx_free(dup_domain.tchar_ptr);
+-    curlx_free(useranddomain.tchar_ptr);
+-    return CURLE_OUT_OF_MEMORY;
+-  }
++  _tcsncpy(dup_domain.tchar_ptr, domain.tchar_ptr, domlen);
++  *(dup_domain.tchar_ptr + domlen) = TEXT('\0');
+ 
+   curlx_free(useranddomain.tchar_ptr);
+ 
+diff --git a/lib/curlx/fopen.c b/lib/curlx/fopen.c
+index 6733010..fbaa202 100644
+--- a/lib/curlx/fopen.c
++++ b/lib/curlx/fopen.c
+@@ -188,14 +188,8 @@ static bool fix_excessive_path(const TCHAR *in, TCHAR **out)
+       if(!temp)
+         goto cleanup;
+ 
+-      if(wcsncpy_s(temp, needed, L"\\\\?\\UNC\\", 8)) {
+-        CURLX_FREE(temp);
+-        goto cleanup;
+-      }
+-      if(wcscpy_s(temp + 8, needed, fbuf + 2)) {
+-        CURLX_FREE(temp);
+-        goto cleanup;
+-      }
++      wcsncpy(temp, L"\\\\?\\UNC\\", 8);
++      wcscpy(temp + 8, fbuf + 2);
+     }
+     else {
+       /* "\\?\" + full path + null */
+@@ -207,14 +201,8 @@ static bool fix_excessive_path(const TCHAR *in, TCHAR **out)
+       if(!temp)
+         goto cleanup;
+ 
+-      if(wcsncpy_s(temp, needed, L"\\\\?\\", 4)) {
+-        CURLX_FREE(temp);
+-        goto cleanup;
+-      }
+-      if(wcscpy_s(temp + 4, needed, fbuf)) {
+-        CURLX_FREE(temp);
+-        goto cleanup;
+-      }
++      wcsncpy(temp, L"\\\\?\\", 4);
++      wcscpy(temp + 4, fbuf);
+     }
+ 
+     CURLX_FREE(fbuf);
+@@ -316,7 +304,7 @@ int curlx_win32_open(const char *filename, int oflag, ...)
+       target = fixed;
+     else
+       target = filename_w;
+-    errno = _wsopen_s(&res, target, oflag, _SH_DENYNO, pmode);
++    res = _wsopen(target, oflag, _SH_DENYNO, pmode);
+     CURLX_FREE(filename_w);
+   }
+   else
+@@ -386,7 +374,7 @@ FILE *curlx_win32_freopen(const char *filename, const char *mode, FILE *fp)
+       target = fixed;
+     else
+       target = filename_w;
+-    errno = _wfreopen_s(&file, target, mode_w, fp);
++    file = _wfreopen(target, mode_w, fp);
+   }
+   else
+     /* !checksrc! disable ERRNOVAR 1 */

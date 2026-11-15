@@ -1,0 +1,17 @@
+# Release assets are attached to GitHub Releases, not committed.
+/release/
+/acceptance/
+/RetroWeather_Setup_*.exe
+/dist/RetroWeather.exe
+/dist/RetroWeather.scr
+/dist/RetroWeatherClose.exe
+/src/player.res
+/SHA256SUMS.txt
+/VALIDATION.txt
+/tests/*.log
+/tests/*RESULTS.txt
+/tests/*BENCHMARK.txt
+/tests/*imports.txt
+__pycache__/
+*.tmp
+.openai/

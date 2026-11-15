@@ -1,0 +1,10 @@
+RETRO WEATHER v1.2 - SCREENSAVER
+Choose the Windows Screensaver component to install/update Windows\RetroWeather.scr.
+Windows selection, timeout and sign-in settings remain unchanged on upgrade.
+Player and screensaver share weather/theme and CRT profile preferences.
+Close the normal player before testing the actual screensaver. Every saver
+session starts with audio disabled; M enables/disables it without exiting.
+Disabling closes audio devices and releases PCM buffers. Holding M toggles once.
+Other keys or normal mouse movement exit. Preview/basic backgrounds stay silent.
+Tools > Screensaver contains app controls and Windows screensaver settings.
+The installer requests graceful closure with Retry/Cancel and no forced kill.

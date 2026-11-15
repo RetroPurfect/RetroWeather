@@ -1,0 +1,25 @@
+RETRO WEATHER - CREDITS AND SOURCES
+Original native player source: MIT; see LICENSE.txt and legal/Player-MIT.txt.
+Weather: Open-Meteo, https://open-meteo.com/ (CC BY 4.0).
+Location lookup: Zippopotam.us / GeoNames; see DATA_LICENSES.txt for database terms.
+https://www.zippopotam.us/ | https://www.geonames.org/
+Weather/provider responses are used to display local model forecasts.
+JSON: nlohmann/json; MIT notice in legal/JSON-MIT.txt and src/JSON-LICENSE.txt.
+HTTPS: bundled curl and dependencies; see network/legal and network README files.
+MinGW runtime: legal/MinGW-runtime-copyright.txt.
+Timezone data derived from IANA timezone rules; bundled transition tables.
+Moon phase/illumination tables computed with PyMeeus during data preparation.
+
+Original synthesized weather ambience (MIT, see LICENSE.txt):
+Clear Day, Clear Night, Cloudy, Rain, Snow, Thunderstorm, Fog.
+Generated specifically for Retro Weather; no sampled commercial recordings.
+Seven seamless 17-second mono 22050Hz/16-bit PCM WAV loops; synthesis source
+is assets/audio/generate_weather_audio.py. No previous music tracks bundled.
+Open-Meteo WMO/current is_day/sunrise/sunset reference:
+https://open-meteo.com/en/docs
+
+Retro Weather is an independent application, not affiliated with The Weather
+Channel or Microsoft. Its original sun/cloud icon is used for app shortcuts.
+
+Screensaver protocol reference:
+https://learn.microsoft.com/en-us/previous-versions/troubleshoot/windows/win32/screen-saver-command-line

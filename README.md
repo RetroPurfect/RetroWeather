@@ -1,2 +1,54 @@
-# RetroWeather
-Free, open-source native Windows weather player and screensaver. XP SP3 through Windows 11 compatibility targets, animated skies and CRT Mode.
+# Retro Weather
+
+A free, open-source native Windows weather player and screensaver. Animated
+scenery, optional synthesized ambience, current conditions, 12-hour and seven-day
+forecasts, sun/moon information, time/date and US holidays.
+
+**v1.2.1 is the stable release, confirmed by the project maintainer.**
+This release includes attribution and distribution notices.
+
+- XP SP3 through Windows 11 are compatibility targets for the 32-bit build.
+- CRT Mode provides larger bold text and lightweight full-raster scenery.
+- Screensaver audio starts disabled; M enables/disables it without exiting.
+- Built-in diagnostics export a report; optional MP4 replay requires supported
+  Windows 7+ media components. XP uses text diagnostics only.
+- Unsigned installer. No ads, subscription or Retro Weather account.
+
+## Download
+
+Use this repository's **Releases** page for the installer, player source,
+matching network-helper source and checksums. The `docs/` website automatically
+links to these assets when served through this repository's GitHub Pages address.
+
+## Build
+
+On a modern Windows development machine, use an XP-capable **i686 MSVCRT**
+MinGW-w64 compiler plus windres and NSIS, then run `build_windows.cmd`.
+64-bit/UCRT toolchains do not produce the intended XP-compatible binary.
+No paid SDK is required. Build tools are obtained separately.
+
+Host regression checks: Python 3 + g++, `python tests/run_tests.py`.
+See [README.txt](README.txt) for controls and compatibility limits.
+
+## Licenses and service terms
+
+Original code, generated art and synthesized ambience: [MIT](LICENSE.txt).
+Third parties retain their respective licenses; see
+[THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt) and
+[NETWORK_SOURCE.txt](NETWORK_SOURCE.txt). The matching helper source archive is
+published beside each binary release, including exact tarballs and build patches.
+
+Weather data by [Open-Meteo](https://open-meteo.com/), CC BY 4.0. Its free hosted
+API has **noncommercial-use restrictions and request limits**, separate from the
+MIT software license. Locations: Zippopotam.us / GeoNames. Read
+[DATA_LICENSES.txt](DATA_LICENSES.txt) for attribution, privacy and database terms.
+
+## Contributing / testing
+
+Open an issue with your app version, OS, CPU/GPU, display resolution and CRT Mode
+setting. A benchmark report helps; describe actual visual/audio behavior too.
+No automated benchmark upload is performed. Review files for private information
+before sharing, especially videos of real location pages.
+
+Free website/repository setup: [PUBLISHING.md](PUBLISHING.md).
+Independent project; not affiliated with The Weather Channel or Microsoft.

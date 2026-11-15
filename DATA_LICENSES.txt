@@ -1,0 +1,52 @@
+RETRO WEATHER — DATA ATTRIBUTION AND SERVICE TERMS
+Reviewed: 2026-11-15. Original application code remains MIT licensed.
+
+WEATHER
+Weather data by Open-Meteo: https://open-meteo.com/
+Data license: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+https://open-meteo.com/en/license
+Retro Weather selects forecast fields, rounds/converts units, abbreviates
+condition descriptions, and calculates summaries for display. These displays
+are adaptations of model data, not station observations or an alert service.
+Live-data pages retain the provider URL and license credit in their footer.
+Help > Open-Meteo Attribution Website opens the provider in the default browser.
+Full provider and license links are supplied here and on About.
+Benchmark scenarios are locally simulated, not provider observations.
+
+FREE SERVICE IS SEPARATE FROM THE DATA AND SOFTWARE LICENSES
+https://open-meteo.com/en/terms
+Open-Meteo's free hosted API is for noncommercial use, subject to limits and
+availability. Current published limits include fewer than 10,000 calls/day,
+5,000/hour and 600/minute; limits apply by application and IP. Advertising,
+subscriptions and commercial products can require a different service plan.
+MIT licensing does not grant unrestricted use of someone else's API service.
+The software has no purchase price, ads, subscription or required app account.
+No provider promises perpetual free or uninterrupted service. Review current
+provider terms before commercial deployment or operating a modified client.
+
+LOCATION
+Location results: Zippopotam.us, https://www.zippopotam.us/
+API information: https://api.zippopotam.us/
+Data source: GeoNames, https://www.geonames.org/
+Zippopotam.us identifies its API database as available under Open Database
+License 1.0 (ODbL); individual contents under Database Contents License 1.0.
+https://opendatacommons.org/licenses/odbl/1-0/
+https://opendatacommons.org/licenses/dbcl/1-0/
+GeoNames attribution / license information: https://www.geonames.org/export/
+Location responses are used to select a US ZIP's place name and coordinates;
+the release does not bundle a bulk postal database or users' saved locations.
+Redistributors publishing a derived database must assess the database-license
+notice/share-alike obligations separately from the application's MIT license.
+
+OFFLINE TABLES
+IANA time-zone rules and calculated lunar/holiday values: see data/SOURCES.txt
+(installed) or dist/data/SOURCES.txt (source tree). PyMeeus is a build-time
+calculation tool and is not linked into or shipped as part of the player.
+
+PRIVACY
+Live ZIP/location and weather requests go directly from your machine to the
+providers. Providers receive the request parameters and IP address. There is
+no Retro Weather account, analytics server or automatic benchmark upload.
+Preferences, saved locations and cached weather are stored locally. Review
+any report/video before choosing to share it, especially real location views.

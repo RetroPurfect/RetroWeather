@@ -1,0 +1,14 @@
+RETRO WEATHER v1.2.1 — 2026-11-15
+Public release preparation from the preserved v1.2 stable baseline.
+
+- Retain Open-Meteo URL / CC BY 4.0 credit on live-data page footers, including CRT.
+- Add Help links for installed data-license information and provider website.
+- Add GeoNames location-data credit on About.
+- Include top-level MIT/data/third-party/source notices with the installation.
+- Supply exact network-helper dependency source and original patches/build recipe.
+- Add static free-hosting website, public-source package and publishing guidance.
+
+Unchanged: scenery engine, CRT full raster/safe inset, rain continuity, M-key
+stream release, screensaver silent default, benchmark/recording and saved settings.
+This patch is unsigned. Physical Windows/CRT/audio verification is still needed
+for this revision; the accepted v1.2 baseline remains available for rollback.

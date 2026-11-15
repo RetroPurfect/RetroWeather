@@ -1,0 +1,375 @@
+v1.2.1 — Public release preparation, 2026-11-15
+Attribution footers, data/license Help links, expanded notices, exact network
+source companion and free GitHub Pages/release publishing package.
+Native retest pending; accepted v1.2 baseline retained separately.
+
+v1.2 stable release: version-label-only promotion of user-confirmed Test21.
+Final acceptance report and baseline preservation notes included.
+
+v1.1 Test21: CRT scenery fills the output raster (including 720x480/60 Hz);
+safe inset is foreground-only, preserving readability without black borders.
+
+v1.1 Test20: automatic readable CRT profile and dedicated layouts; six organized
+menus; benchmark/export consolidation and About page routing; CRT subpanel tests.
+
+v1.1 Test19: clean centered calendar labels, single symmetrical heart;
+automatic graceful installer closure with Retry/Cancel; screensaver M audio
+enable/disable with device/buffer release, default off each session.
+SmartScreen remains deferred.
+
+v1.1 Test18: refreshed holiday/calendar and clock pages; five recording tiers
+360p-2160p; removed file-size cap; bounded queue and XP text-only mode retained.
+
+v1.1 Test17: nine-page weather redesign, seven-day and hourly forecasts, added
+weather details/colors/icons, combined Sun & Moon, branded About/credits page,
+page preference migration and expanded benchmark/replay coverage. See README.
+
+Retro Weather v1.1 Test16 — Optional small MP4 replay (2026-11-15)
+
+Close Retro Weather and install over Test15. Choose Help > Run Full Diagnostics / Benchmark. A new options dialog offers recording OFF by default. The existing 305-second timed benchmark runs first, unchanged. If recording is enabled, a separate 108-second replay then shows all nine weather scenes and all seven pages in each scene. Recording/encoder initialization cannot affect the earlier timing results. Total with recording is about seven minutes plus encoder setup/finalization.
+
+Options: 720p or lighter 480p, maximum 10 FPS, aspect ratio preserved with even video dimensions. No upscaling of normal-sized sources. File-size limits: 10, 25 (default), or 50 MB (binary MB units). H.264 target bitrate is reduced for the smaller limit. Default 720p + generated audio estimates roughly 13 MB for the full replay; actual codec output varies. 480p is usually smaller. A bounded two-frame queue drops captures instead of accumulating raw frames. No raw recording files are written to disk. Encoders run on a below-normal-priority worker; Windows may use hardware or software encoding. Encoder internal buffers are managed by Windows.
+
+MP4 uses Windows Media Foundation H.264/AAC encoding; Windows 7+ media components/encoders are required. These DLLs are dynamically loaded only for recording, with no new Media Foundation DLL imports. On XP, the recording checkbox is disabled and the normal text benchmark remains available. Missing/unsupported encoders on newer Windows are reported without discarding the text benchmark. Windows N editions may lack media components.
+
+Capture includes only the app's offscreen simulated weather picture: no desktop, progress dialog, microphone or system-audio capture. Optional AAC audio is generated from the bundled sounds, resampled to 44.1 kHz mono, at the temporary benchmark volume. It is an intended soundtrack, not evidence that waveOut/the physical speakers worked; keep listening during the timed run. Replay audio boundaries follow scene transitions; this is not a recording of the actual driver crossfade.
+
+The MP4 is streamed into Documents\Retro Weather\Diagnostics. The final combined text report uses the same timestamped base name when available. The report includes recording resolution/bitrate, written/dropped/missed frame counts, captured scene/page masks, file size, duration, errors, and separate recording-only process CPU/peak working set. Recording statistics are separate from benchmark performance. Post-run memory may retain Windows encoder/allocator caches.
+
+Size monitoring stops recording early near the selected limit with room for MP4 metadata. Finalized output above the limit is removed; failure to remove an owned incomplete/oversized file is explicitly reported. Existing files are never intentionally replaced: a new unique name is reserved first. Cancellation during timing exports partial text without recording. Cancellation during replay stops/finalizes a partial MP4 and retains the completed timed results. Resize/minimize during replay stops capture; original settings/live weather/audio are restored before export. Encoder finalization can take a few seconds. Output failures keep the combined report available for Quick Export retry in the current process.
+
+TEST: run once with recording off to compare normal behavior; then enable recording (720p, 25 MB, audio) and run again. Upload the paired .txt and .mp4. Check video is upright, colors/text legible, scenes/page changes present, audio intended soundtrack present, file size within the selected cap, and live settings restored afterward. First native Windows encoding run remains pending. Use 480p if capture overhead/drop count is high. No overnight testing needed.
+
+Reference implementation guidance: Microsoft Learn, Using the Sink Writer / Sink Writer Video Encoding Tutorial, H.264 Video Encoder and AAC Encoder. No external encoder executable or codec download is bundled.
+
+--- Previous builds ---
+Retro Weather v1.1 Test15 — Full Diagnostics / Benchmark (2026-11-14)
+
+START: Help > Run Full Diagnostics / Benchmark, or About / Diagnostics > Full Benchmark. Wait for any live weather/location operation to finish first. Use your normal display resolution. Keep the player visible and leave the benchmark running while listening to its expected audio.
+
+One run takes approximately 5 minutes 5 seconds:
+- Basic Blue idle baseline: 15 sec, including 5 sec settling.
+- Clear day, clear night, partly cloudy, overcast, drizzle, rain, thunderstorm, snow and fog: 30 sec each, including 5 sec settling and 25 sec measurement. All seven pages are shown in each weather stage. Each measured scene window exceeds the bundled sound's 17 sec loop length; listen to confirm actual continuity.
+- Playback control checks: 20 sec, exercising pause, resume, Audio Off, Audio On and post-transition state.
+
+Progress and current expected sound appear in a small dialog. Normal CPU budget, frame cap and adaptive graphics remain active. Audio is temporarily enabled at your current volume (25% if it was zero) for listening, then the original enabled/volume/paused state is restored. The live weather dataset/time zone, background, page and page timing state are restored at completion/cancellation. Settings persistence and background weather/location requests are suspended during the run. Minimize/restore, screensaver activation and alternative resolutions are not automated; repeat at other resolutions if desired.
+
+One timestamped UTF-16 text file named RetroWeather_Benchmark_*.txt is saved automatically in Documents\Retro Weather\Diagnostics after completion, cancellation or an interrupted run. The success dialog shows its path. It contains all completed/partial stage entries, initial/post-run snapshots, actual resolution/quality, CPU (overall and single-core equivalent), FPS, warm composition average/p95/max, transient/cache spikes, drawing costs, sampled memory/handle peaks and playback API checks. Mixed quality/geometry is flagged. Audio audibility and visual smoothness/lighting/trails are explicitly manual checks, not automatic PASS claims.
+
+Cancel and Export stops promptly and exports partial results. Original settings/live data are restored first. If automatic export fails, the latest combined report remains in About / Diagnostics and Quick Export can retry while the process stays open. Closing after a failed export loses that unsaved in-memory report. A system shutdown or crash can prevent final export.
+
+CLEANUP: Save As diagnostics removed. ZIP test codes and their Help list removed; ZIP input accepts real locations only. The local simulated datasets are retained internally for the benchmark, with the unused parser removed and module renamed benchmark_weather.hpp. Retired Save-dialog-only memory events/timer and unused heat buffer removed. Settings Backup/Restore still uses its required file picker. Quick Export remains; after a benchmark it includes the latest combined results. Graphics, rain optimization, moving backgrounds and the Test14 audio fix remain.
+
+INSTALL: close Retro Weather, install over Test14. Test14 remains the prior checkpoint. Run the full benchmark once and upload its single report. First Windows 11 end-to-end benchmark verification is pending; host tests validate the schedule/data/statistics, not actual Windows audio/GUI behavior. XP compatibility retained as a target; physical XP testing deferred.
+
+--- Previous builds ---
+Retro Weather v1.1 Test14 — Audio fade handoff fix (2026-11-14)
+
+User reported rain sounding briefly then going silent. A new shared-mixer driver simulation reproduced a crossfade defect: applying zero volume to the outgoing waveOut handle can also mute the incoming loop when handles share mixer volume. The old tests assumed independent per-handle volume.
+
+Fix: apply outgoing gain first, incoming gain last. At fade completion, close the outgoing stream then reapply the current stream gain. Independent-volume drivers retain the same crossfade gain values; shared-mixer drivers no longer finish at outgoing zero. Actual crossfade quality still depends on driver volume behavior. No new threads, sound buffers, decoding or per-frame volume calls. The existing 100ms fade timer remains.
+Diagnostics now include Audio transition and Last volume API result (0 means the most recent waveOutSetVolume call succeeded). These report API state, not proof of audible output.
+Rendering, rain distribution/direct-DIB drawing, shift bounds, scenery, frame cap, CPU budget and preview data are unchanged from Test13.
+
+Windows 11 test: close Retro Weather and install over Test13. Enable Audio. Switch TEST-NIGHT -> TEST-RAIN; sound should continue after the 1.6-second fade. Try TEST-DRIZZLE (same rain loop), TEST-STORM -> TEST-RAIN, Audio Off/On and pause/resume. Let rain run for at least 20 seconds to cross its 17-second loop boundary. Send a Quick Export if sound still stops. Recheck Basic themes remain silent. No overnight test needed. Physical XP validation remains deferred.
+
+--- Previous builds ---
+Retro Weather v1.1 Test13 — Cleanup and precipitation optimization (2026-11-14)
+
+Night preview now uses moon icons in the five-day forecast. Live five-day forecasts keep daytime icons.
+Rain/drizzle streaks draw directly into the existing DIB instead of creating/selecting/deleting a GDI pen for every drop. Edges have fractional pixel coverage. Existing distribution, counts, colors, speed, cloud layers, audio, frame cap and CPU budget are retained. No per-frame streak allocation or additional image buffer. GDI fallback remains if a direct target is unavailable. Storm lightning still uses the existing path.
+Preview enter/switch/exit state is now centralized and tested: the complete live weather dataset, including timezone and sunrise/sunset values, and original background are restored unchanged. This is a testability/maintenance refactor, not a claim that an observed timezone bug was fixed.
+Display shifting is clamped to the actual occupied foreground bounds, including shadows. It stays within +/-2 render pixels and cannot shift cached text outside the image. Boundary tests cover 640x480 through 4K. Existing full background restore on shift remains. This reduces repeated pixel exposure; it cannot guarantee burn-in prevention.
+
+All previous preview codes remain: TEST-SUN, TEST-NIGHT, TEST-PARTLY, TEST-CLOUD, TEST-DRIZZLE, TEST-RAIN, TEST-STORM, TEST-SNOW, TEST-FOG, TEST-LIVE. Enter in Locations then Look Up / Preview; list under Help. TEST-LIVE/F5/restart returns to live weather. Test codes never become saved locations.
+
+Windows 11 verification:
+1. Close the player, install over Test12. TEST-NIGHT: forecast icons should be moons.
+2. TEST-RAIN and TEST-DRIZZLE: inspect streak appearance; Sample CPU (10s), then Quick Export. Compare precipitation timing at the same scenery quality/resolution.
+3. TEST-LIVE: confirm your real location, timezone, sunrise/sunset and moon dates; F5 refresh still works.
+4. At 640x480, 1080p and 4K where available, pause page cycling for 45-90 sec: check shifted text/shadows have no clipping or trails.
+5. Check pause/resume audio/pages, minimize/restore and screensaver entry/exit with movement. These require Windows runtime confirmation; build-host regression tests do not replace them.
+After Windows 11 checks pass, test on physical XP/Pentium III. No overnight endurance test is required.
+
+--- Previous builds ---
+Retro Weather v1.1 Test12 — Gentle movement and visual cleanup (2026-11-14)
+
+Clear day and partly cloudy: sun moves slowly along a curved path. The old flat concentric glow is replaced by cached, transparent, smoothly fading radiance without the dark circular edge or fixed ray marks.
+Clear night: moon moves along the same curved path; background phase comes from the same primary-phase table/interval calculation as the Moon Phases page. Cached sphere shading and craters add detail. Stars fade individually and drift gently.
+Clouds, rain, drizzle, storms and snow retain their existing movement. Fog sprites now use broad, smoothly tapered haze rather than cloud-mask outlines; haze continues drifting.
+Weather text and icons shift along a ten-position path, no more than two render pixels from center, every 45 seconds. This includes the Basic themes and works while page cycling is paused. A shift requests a complete background restore so old text positions cannot trail in the partial-render path. No per-frame font/cache rebuilding is introduced. This reduces repeated pixel exposure; it cannot guarantee prevention of CRT/OLED burn-in or replace display power-off.
+Preview location details now say local simulation instead of claiming a ZIP lookup. All Test11 preview codes, Help list, live return and audio behavior remain.
+
+Test on Windows 11: install over Test11 while closed. Try TEST-SUN, TEST-NIGHT, TEST-PARTLY and TEST-FOG. Check sun edge, slow movement, moon orientation versus Moon Phases and haze appearance. Let a page remain paused for 45-90 seconds and check for subtle text shifting without trails/cropping. Basic color themes should stay silent and text should also shift. Run CPU sample and Quick Export for comparison. TEST-LIVE restores your saved location/background. Physical XP verification deferred.
+
+--- Previous builds ---
+Retro Weather v1.1 Test11 — Weather previews and rain distribution (2026-11-14)
+
+In Locations > Add or Change Location, type a test code and choose Look Up / Preview. Help > Weather Test Codes lists the codes. Case-insensitive, surrounding whitespace accepted; exact code required.
+TEST-SUN: clear daytime
+TEST-NIGHT: clear nighttime
+TEST-PARTLY: partly cloudy daytime
+TEST-CLOUD: overcast daytime
+TEST-DRIZZLE: light drizzle daytime
+TEST-RAIN: rain daytime
+TEST-STORM: rain and lightning daytime
+TEST-SNOW: snow daytime
+TEST-FOG: fog daytime
+TEST-LIVE: return to previously displayed live weather and original background
+F5 also exits preview and refreshes the real location. Restarting uses the saved real location/background. Previews temporarily use Weather Determined; basic backgrounds remain silent in normal use. Audio follows the preview when audio is enabled and not paused.
+
+Simulated values and five-day sample forecasts are visibly labelled. Test codes are never saved as locations and do not overwrite the weather cache or ZIP. Automatic requests pause during preview. Wait for any active location/weather request to finish before entering a preview. Choosing a real location or background also leaves preview. Test mode itself is not restored after restarting.
+
+Rain now uses independently hashed positions and depths to remove repeating diagonal bands. Drizzle uses fewer, shorter, slower and fainter streaks. Diagnostics include last-frame precipitation cost and remaining sky/clouds/effects cost. SSE2 cloud blending, scaler, frame cap, CPU budget and adaptive quality are unchanged.
+
+Windows 11 checks: install over Test10 while closed. Exercise all nine codes, changing directly between modes; test storm long enough for occasional lightning. Check sample labels, animation/audio, pause and units, Quick Export and Help. TEST-LIVE/F5 must restore the real location; restart while previewing to confirm no simulated weather persists. Check saved locations/settings remain correct. Use Sample CPU (10s) then Quick Export for rain, snow and fog. Physical XP testing remains deferred.
+
+--- Previous builds ---
+Retro Weather v1.1 Test10 — Cloud blend optimization (2026-11-14)
+
+Cached clouds now blend four pixels at a time on SSE2-capable CPUs. Pentium III/no-SSE2 keeps the original scalar path. Pixel output, cloud artwork, motion, quality policy, resolution caps, frame cap and CPU budget are unchanged. No additional persistent image buffers are introduced. Quick Export and Save As remain available.
+
+Build-host tests found exact pixel agreement for randomized premultiplied RGB, sparse runs, clipping, off-screen offsets, gain and short tails. A 60-megapixel-pass blend-only benchmark measured approximately 4.5x at -O2 and 3.6x at -Os. This is not a claim of whole-player speedup or measured Windows CPU savings.
+
+Windows 11 test: close the player and install over Test9. With Weather Determined selected, let clouds animate for about a minute, then open About / Diagnostics, run Sample CPU (10s), and Quick Export. Send the report. Check Cloud blend: SSE2 and warm scenery/scale timings. If adaptive graphics changes from Balanced to Detailed, compare resolution and quality too; higher detail may absorb some savings. Check visual appearance, page changes and audio. XP verification remains deferred.
+
+--- Previous builds ---
+Retro Weather v1.1 Test9 — Quick Export diagnostics
+
+Quick Export saves a fresh UTF-16 text report in Documents\Retro Weather\Diagnostics without opening the Windows Save dialog. Timestamped names use CREATE_NEW and collision suffixes, so existing reports are not overwritten. Save As remains available. Failed Quick Exports report the error without opening the picker automatically. The success message shows the path; Explorer is not opened automatically.
+
+The Test8 reports isolated the largest memory jump to the Windows Save dialog. This build provides a lighter comparison route; it does not claim all residual memory growth is fixed. Rendering, animation quality, scaler and CPU budget remain unchanged.
+
+Test on Windows 11: close the player, install over Test8, launch fresh, open About / Diagnostics and use Quick Export twice. Send both reports. Do this before using Save As, since picker modules can remain loaded for the session. Then verify Save As still works. Windows execution and XP compatibility need user verification.
+
+--- Previous builds ---
+RETRO WEATHER v1.1 TEST 8 - 2026-11-14
+Diagnostics/export UI memory investigation; rendering unchanged from Test 7.
+- Bounded before/during/after UI event memory/commit/handle/module counts.
+- Normal Save dialog retained; one-shot owner timer for an optional active snapshot.
+- Export generates fresh diagnostics after the picker returns.
+- Modal-close and export notification/write events retained for the next report.
+No memory-leak fix is claimed; the next Windows data must establish the cause.
+Install over Test 7 after closing player/screensaver/preview windows.
+Test: export once, close/reopen diagnostics, export a second file; send both.
+
+RETRO WEATHER v1.1 TEST 7 - 2026-11-14
+Memory investigation while retaining the Test 6 scaler.
+- Reusable 128-row foreground extraction scratch replaces a full-screen temporary.
+- Strip-based sparse extraction and off-strip primitive clipping.
+- Expired transition snapshots release retained vector capacity.
+- Diagnostics include process commit, GDI/USER counts, tracked DIB/cache/audio
+  storage and a bounded 12-rebuild memory history by page.
+No new effects/layout/options. SSE2 scaler and existing CPU/FPS policy retained.
+Working-set growth alone is not proof of a leak; the next Windows reports must
+establish whether memory stabilizes and whether clipping/FPS remain correct.
+Install over Test 6 with the player/screensaver/preview closed. XP tests deferred.
+
+RETRO WEATHER v1.1 TEST 6 - 2026-11-14
+Focused scaling optimization; visuals and rendering budget retained.
+- Optional runtime-guarded SSE2 integer interpolation for horizontal/vertical
+  scaling, cached weights and direct copies at exact vertical sample positions.
+- Scalar reference retained; no-SSE2 computers retain the legacy route.
+- Optimized output matches scalar pixels exactly, including odd sizes and 4K.
+- Diagnostics identify the active bilinear kernel. Stage timings and existing
+  six-frame GDI-versus-bilinear comparison remain available.
+No new effects/layout/features. Same ~15 FPS ceiling and cost-based rest.
+Install over Test 5 with player/screensaver/preview windows closed.
+Actual Windows CPU/FPS improvement is pending testing; XP hardware deferred.
+
+RETRO WEATHER v1.1 TEST 5 - 2026-11-14
+Bottleneck investigation plus small iPhone Weather-inspired refinements.
+- Separate last-frame and smoothed warm scenery/scale/overlay/presentation times.
+- Cached two-row bilinear background scaling compared with GDI HALFTONE during
+  six ordinary warm animation frames; retain the measured faster scaling path.
+- Native foreground resolution preserved; scaling tables/rows stay bounded.
+- Slightly richer cached cloud texture/shading, lighter modern secondary text,
+  moon icons for local-night clear/partly cloudy current conditions.
+Existing box-free layout, backgrounds, settings, audio, screensaver, quality
+controller, frame cap and CPU-duty pacing remain. No new data sources/cards/maps.
+Windows performance comparison remains pending; XP hardware checks deferred.
+Install over Test 4 after closing player/screensaver/settings preview windows.
+
+RETRO WEATHER v1.1 TEST 4 - 2026-11-14
+Windows 11-first correction to Test 3 rendering quality and memory behavior.
+- Automatic detail measures warmed scenery drawing, excluding foreground/window
+  presentation and cache-generation frames. Averaging, sustained thresholds and
+  cooldown reduce overreaction; recovery from Lightweight is less restrictive.
+- Raster caches release excess capacity, including after lowering resolution.
+- Exact packed premultiplied RGB blend removes repeated division from hot loops.
+- Diagnostics report scenery drawing time and whether the frame rebuilt caches.
+Conservative Balanced start, ~15 FPS ceiling, cost-based rest, minimized pause,
+full-resolution foreground, existing weather/audio/settings/screensaver retained.
+No added weather effects, UI controls or background choices.
+Install over Test 3 with the player and screensaver/preview windows closed.
+CPU/FPS/memory improvements require comparable Windows measurements; XP deferred.
+
+RETRO WEATHER v1.1 TEST 3 - 2026-11-14
+Windows 11-first optimization pass; Test 2 retained as the comparison build.
+- Cached transparent foreground text/shadows/icons and sparse run composition.
+- Cached scaled cloud sprites and sky/celestial lighting; bounded cloud slots.
+- Conservative Balanced start independent of core count; measured-cost detail.
+- Approximate 15 FPS ceiling and cost-based rest targeting modest render duty.
+- Minimized windows stop scenery rendering; weather/audio continue normally.
+- Continuous layered overcast, cached sun shimmer and softer storm afterglow.
+- Tighter temperature suffixes and aligned sunrise/sunset times.
+- Measured FPS, QPC composition timing, cache sizes and one-core CPU equivalent.
+No boxes, transparency options or bottom buttons. Menus/shortcuts retained.
+Existing settings, weather/audio, backup/restore and screensaver features retained.
+Install over Test 2 after closing the player and screensaver/preview windows.
+XP-compatible build target retained; XP hardware checks deferred as requested.
+Portable cloud math benchmarks do not establish Windows runtime/whole-app CPU.
+
+RETRO WEATHER v1.1 TEST 2 - 2026-11-14
+Main development build: Windows 11 first; preserve XP code compatibility.
+Removed all reading panels, top/bottom boxes, transparency controls and bottom
+Pause/Audio Off/Next buttons. Text uses a subtle shadow over every background.
+Player/Audio menu controls and P/M/Space keyboard shortcuts remain.
+Four shaded cloud textures, bilinear edge filtering, layered cloud depths,
+higher scene resolutions on capable PCs, improved sun glow, rain/snow depth,
+soft branching-lightning glow and antialiased modern text.
+Automatic graphics quality uses CPU/memory for its initial ceiling and measured
+frame composition cost for hysteretic detail changes. Lightweight XP path retained.
+New backups omit removed transparency. Previous valid backup values are discarded
+on import; other supported settings and location metadata are retained.
+Install over v1.1 Test 1 with the player and screensaver closed. No uninstall needed.
+Weather/audio/menu/screensaver behavior from Test 1 is otherwise retained.
+
+v1.1 Test 1 (2026-11-14)
+RETRO WEATHER v1.1 TEST 1
+Fresh-install test of automatic weather backgrounds and weather ambience.
+Five backgrounds, full animation with internal adaptive pacing, local day/night,
+branching storm lightning, moving clouds/rain/snow/fog, sun/moon/stars,
+condition crossfade, and 100% reading-panel transparency.
+Seven fixed weather sound loops, M toggle, retained volume and coupled pause;
+basic themes always silent; separate screensaver audio default Off.
+Old scenery controls and music/user-file system removed entirely.
+Backup schema 2 plus schema 1 migration. Existing location, weather, holiday,
+moon/date/time, CRT, scaling, diagnostics and screensaver features retained.
+No old-release uninstall/migration/cleanup is performed by the installer.
+This is a new renderer/audio test, not a label-only v1.0 release.
+
+HISTORICAL CHANGELOG
+v1.0 final - 2026-11-14
+- Promoted tested RC1 behavior without functional changes.
+- Final version labels and PE version 1.0.0.0; prerelease flag removed.
+- Finalized documentation/test record; unsigned distribution status explicit.
+
+v1.0 RC1 - Build 2026-11-14
+- Feature freeze from user-confirmed v0.14.
+- Release-candidate version labels/PE prerelease metadata and installer name.
+- Finalized release instructions, tested configurations, credits and acceptance.
+- Backup schema, renderer and all runtime behavior unchanged.
+
+v0.14 performance/verification test - Build 2026-11-14
+- Legacy changed-region composition for localized scenery movement; broad
+  changes, content updates and resizing fall back to full composition.
+- Native font reuse; clipped panel blending; diagnostics for dirty area/path.
+- Low/Normal menu labels explain detail versus adaptive speed.
+- Portable Unicode backup/small-monitor fixtures and targeted OS test checklist.
+
+v0.13 performance test - Build 2026-11-14
+- DIB32 direct flat-color blending replaces GDI AlphaBlend scaling.
+- Completed-frame reuse for unchanged expose/repaint events.
+- One-shot adaptive animation scheduling with a rest after each rendered frame.
+- Automatic no-SSE2 legacy scenery quality/cadence; native foreground retained.
+- Diagnostics report render policy, composition duration and adaptive wait.
+
+v0.12 corrective test - Build 2026-11-14
+- Removed visible-picture clear before presentation (flicker cause).
+- Persistent offscreen buffers; native-resolution foreground with independently
+  bounded/smoothed scenery. CRT whole-picture rendering remains explicit.
+- Low/Normal targets 10/20fps with unchanged real-time effect speed.
+- Continuous sky gradient, local-sky star fades, narrower naturally shaped
+  desert pillars, softer shadows and less regular sandstone strata.
+
+v0.11 Test - Build 2026-11-14
+- Settings .rwbackup export/import with validation, automatic recovery backup,
+  staged writes and rollback on restore failure; close/reopen after restore.
+- Combined Desert Day & Night theme, full scenic picture, panel transparency.
+- Optional Off/Low/Normal scenic effects; animation defaults Off.
+- Snow/rain motion, occasional muted lightning; desert sun/moon orbit, stars,
+  heat shimmer and sand gusts. No browser engine or large scenic image assets.
+- Separate city/state and country/ZIP, text-fitting readability floor.
+- Existing owned SCR refresh during upgrade; Windows saver settings untouched.
+
+v0.10 Test - build 2026-11-14
+- Windows SCR integration: configure, embedded preview, fullscreen weather,
+  exit-on-input, separate optional music and player-preference isolation.
+- Installer Screensaver component, Windows Settings shortcut; no auto-selection.
+- Help keyboard guide, build date in About/TXT, Locations Refresh Weather Now.
+- Manual sleep/resume audio/refresh handling; updated credits/instructions/tests.
+- Prior v0.9 retained as tested checkpoint.
+
+v0.9 test build
+Coordinated theme chrome/cards; Export to TXT; readable local forecast time;
+compass wind direction; music status cleanup; weather age and bounded retry.
+
+v0.8 test build
+- Top-level Backgrounds menu and fullscreen right-click Backgrounds submenu.
+- Basic Blue (fresh-install default), Basic Red, Basic Green, Basic Purple,
+  Warm Horizon (large centered sun), Moon & Stars, Snow, Rain.
+- Static GDI backgrounds; no animation loop or image dependencies.
+- Theme remembered; display defaults restore Basic Blue.
+- Pause/Resume holds music and automatic page cycling together.
+- Music Off closes MCI playback; Music On restarts selected track.
+- Off stays off across playlist selection, next, rescan and restart.
+- Existing locations, unit/display settings and Music folder retained.
+
+v0.7 test build
+- Removed audio-control hiding and its setting; cursor timeout retained.
+- Always-visible Play/Pause, Mute and Next buttons.
+- Selectable playlist with rescan, double-click/keyboard play and pause.
+- Remember selected music filename/paused state, not playback position.
+- Local Fahrenheit/Celsius and mph/km/h/m/s/knots conversions.
+- Lightweight GDI weather icons for current conditions and five-day rows.
+- Per-page duration overrides, with an inherited default and cycle pause.
+- Remember normal bounds, maximized state and monitor with safe recovery.
+- Optional CPU/working-set sample and compatibility-test recording guide.
+
+v0.6 test build
+- ZIP entry moved to Locations dialog; city/state/country shown and saved.
+- Lookup then explicit Use Location; stale/canceled lookup reply protection.
+- Stored labels and background label resolution for old bare ZIP entries.
+- Adaptive Auto, 4:3, 16:9, 16:10, 5:4 and 21:9 layouts.
+- Unicode text, measured field fitting/ellipsis and bounded table rows.
+- Keyboard menu access, Ctrl+L location and F1 diagnostics shortcuts.
+- Display/page defaults reset while keeping locations, music and startup.
+- About/Diagnostics report with OS/CPU/memory/DPI/update/helper data.
+- Clearer ZIP/network/TLS/HTTP errors; last good forecast retained.
+- Upgrades retain removal of optional default music tracks.
+
+v0.5 / Retro Weather test build
+- Rename player, installer, shortcuts and header; sun/cloud desktop icon.
+- XP-through-Windows-11 compatibility target, dynamic modern DPI support.
+- Native-resolution GDI text/graphics for 1080p/4K; 640x480 CRT mode.
+- CRT safe margins and text-size choices.
+- AM/PM placed after measured clock width.
+- Seven selectable/reorderable pages; pause/resume cycling.
+- Sunrise, sunset and daylight duration for the selected ZIP.
+- Saved ZIP locations; clear last-successful-update/cached/stale status.
+- Opt-in start-fullscreen/start-with-Windows settings.
+- Optional hiding of fullscreen playback controls during cursor inactivity.
+- Non-destructive legacy profile/music import and retained old install.
+
+v0.4 test build
+- Hours/minutes clock only; 12/24-hour selection retained.
+- Double-click forecast picture to enter/leave fullscreen.
+- Cursor hides after 12 idle seconds in active fullscreen; movement,
+  menus and leaving fullscreen restore it. No global ShowCursor counter.
+- Shared proportional scaling and click mapping across resolutions.
+- Restored windows kept inside an available monitor work area.
+- No changes to weather fetching, music assets or screen-saver settings.
+
+v0.3 test build
+- General XP/Pentium III target rather than a laptop-specific design.
+- Centered RWXP desktop/EXE icon; minimal text header, no in-picture logo.
+- Four included ambient tracks; Music-folder discovery, MP3/WAV via XP MCI,
+  mute, next, volume presets, cycle/shuffle/repeat, rescan/open folder.
+- Forecast timing dialog with seconds/minutes and optional cycle pause.
+- Moon, upcoming US holiday, and ZIP-local time/date pages.
+- Offline lunar and timezone data, 2020-2050.
+- Screensaver and idle display/system sleep prevention while running.
+- Audio and timing preferences saved. Music retained during uninstall.
+
+v0.2: confirmed working by user in VMware; preserved separately.

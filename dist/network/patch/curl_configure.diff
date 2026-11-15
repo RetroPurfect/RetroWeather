@@ -1,0 +1,35 @@
+ configure        | 2 +-
+ lib/curl_setup.h | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/configure b/configure
+index 0900a99..161429d 100644
+--- a/configure
++++ b/configure
+@@ -18758,7 +18758,7 @@ printf %s "checking if building for Windows Vista or newer... " >&6; }
+ int main(void)
+ {
+ 
+-      #if (_WIN32_WINNT < 0x600)
++      #if (_WIN32_WINNT < 0x501)
+       #error
+       #endif
+ 
+diff --git a/lib/curl_setup.h b/lib/curl_setup.h
+index 0d4a8fa..9e293c2 100644
+--- a/lib/curl_setup.h
++++ b/lib/curl_setup.h
+@@ -160,11 +160,11 @@
+ #endif /* HAVE_CONFIG_H */
+ 
+ #ifdef _WIN32
+-#  if defined(_WIN32_WINNT) && (_WIN32_WINNT < 0x0600)
++#  if defined(_WIN32_WINNT) && (_WIN32_WINNT < 0x0501)
+ #    error The minimum build target is Windows Vista (0x0600)
+ #  endif
+ 
+-#  if !defined(CURL_WINDOWS_UWP) && (defined(_MSC_VER) || defined(__MINGW32__))
++#  if !defined(CURL_WINDOWS_UWP) && (defined(_MSC_VER) || defined(__MINGW32__)) && defined(_WIN32_WINNT) && (_WIN32_WINNT >= 0x0600)
+ #    ifndef HAVE_IF_NAMETOINDEX
+ #    define HAVE_IF_NAMETOINDEX
+ #    endif

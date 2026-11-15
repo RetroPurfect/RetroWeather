@@ -1,0 +1,113 @@
+#include <windows.h>
+1 ICON "../assets/RetroWeather.ico"
+500 DIALOGEX 0, 0, 280, 208
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Forecast Timing"
+FONT 8, "MS Shell Dlg"
+BEGIN
+ LTEXT "Default page duration:", -1, 10, 11, 125, 12
+ EDITTEXT 501, 141, 9, 48, 14, ES_NUMBER | WS_TABSTOP
+ COMBOBOX 502, 198, 9, 72, 55, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+ LTEXT "Page to customize:", -1, 10, 30, 250, 12
+ COMBOBOX 505, 10, 44, 260, 80, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+ CONTROL "Use default duration for this page", 508, "BUTTON", BS_AUTOCHECKBOX | WS_TABSTOP, 10, 72, 260, 12
+ LTEXT "Custom duration:", -1, 10, 96, 125, 12
+ EDITTEXT 506, 141, 93, 48, 14, ES_NUMBER | WS_TABSTOP
+ COMBOBOX 507, 198, 93, 72, 55, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+ LTEXT "Pause after full cycle:", -1, 10, 129, 125, 12
+ EDITTEXT 503, 141, 126, 48, 14, ES_NUMBER | WS_TABSTOP
+ COMBOBOX 504, 198, 126, 72, 55, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+ LTEXT "Page durations: 1 second to 60 minutes. Pause: 0 to 60 minutes. A pause of 0 means continuous cycling.", -1, 10, 151, 260, 26
+ DEFPUSHBUTTON "OK", IDOK, 150, 185, 55, 16
+ PUSHBUTTON "Cancel", IDCANCEL, 215, 185, 55, 16
+END
+600 DIALOGEX 0, 0, 266, 185
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Choose and Order Pages"
+FONT 8, "MS Shell Dlg"
+BEGIN
+ LTEXT "Select a page, then toggle it or change its position.", -1, 10, 8, 245, 12
+ LISTBOX 601, 10, 25, 171, 120, LBS_NOTIFY | WS_VSCROLL | WS_TABSTOP | WS_BORDER
+ PUSHBUTTON "Enable / Disable", 602, 188, 26, 68, 18
+ PUSHBUTTON "Move Up", 603, 188, 54, 68, 18
+ PUSHBUTTON "Move Down", 604, 188, 82, 68, 18
+ LTEXT "At least one page must remain enabled.", -1, 10, 147, 240, 12
+ DEFPUSHBUTTON "OK", IDOK, 146, 165, 50, 15
+ PUSHBUTTON "Cancel", IDCANCEL, 206, 165, 50, 15
+END
+
+1 VERSIONINFO
+FILEVERSION 1,2,1,0
+PRODUCTVERSION 1,2,1,0
+FILEFLAGSMASK 0x3f
+FILEFLAGS 0x2
+FILEOS 0x40004
+FILETYPE 0x1
+BEGIN
+ BLOCK "StringFileInfo"
+ BEGIN
+  BLOCK "040904E4"
+  BEGIN
+   VALUE "FileDescription", "Retro Weather\0"
+   VALUE "FileVersion", "1.2.1.0\0"
+   VALUE "ProductName", "Retro Weather\0"
+   VALUE "ProductVersion", "1.2.1\0"
+   VALUE "OriginalFilename", "RetroWeather.exe\0"
+  END
+ END
+ BLOCK "VarFileInfo"
+ BEGIN
+  VALUE "Translation", 0x0409, 1252
+ END
+END
+700 DIALOGEX 0, 0, 280, 178
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add or Change Location"
+FONT 8, "MS Shell Dlg"
+BEGIN
+ LTEXT "&US ZIP code or saved location:", -1, 10, 10, 260, 12
+ COMBOBOX 701, 10, 25, 260, 90, CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+ PUSHBUTTON "&Look Up ZIP", 702, 10, 51, 76, 18
+ PUSHBUTTON "&Remove Saved", 704, 94, 51, 88, 18
+ LTEXT "Resolved city, state and country:", -1, 10, 79, 260, 12
+ EDITTEXT 703, 10, 94, 260, 40, ES_MULTILINE | ES_READONLY | ES_AUTOVSCROLL | WS_VSCROLL | WS_TABSTOP
+ DEFPUSHBUTTON "&Use Location", IDOK, 129, 150, 78, 18
+ PUSHBUTTON "Cancel", IDCANCEL, 215, 150, 55, 18
+END
+950 DIALOGEX 0, 0, 270, 122
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Retro Weather Screensaver"
+FONT 8, "MS Shell Dlg"
+BEGIN
+ LTEXT "Uses your saved location, background, units and page timings. Configure these in the player first.", -1, 9, 9, 250, 27
+ LTEXT "Audio starts disabled each session. Press M to enable or disable it and release its audio resources.", -1, 9, 38, 250, 26
+ LTEXT "M does not exit the screensaver. Other keys or mouse movement exit. Preview stays silent.", -1, 9, 68, 250, 25
+ PUSHBUTTON "Open Player", 952, 9, 98, 75, 16
+ DEFPUSHBUTTON "OK", IDOK, 151, 98, 50, 16
+ PUSHBUTTON "Cancel", IDCANCEL, 208, 98, 50, 16
+END
+
+1000 DIALOGEX 0, 0, 310, 114
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Retro Weather - Full Diagnostics / Benchmark"
+FONT 8, "MS Shell Dlg"
+BEGIN
+ LTEXT "Preparing benchmark...", 1001, 10, 10, 290, 75
+ PUSHBUTTON "Cancel and Export", IDCANCEL, 176, 90, 124, 16
+END
+
+1200 DIALOGEX 0, 0, 300, 160
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Benchmark Options - Retro Weather"
+FONT 8, "MS Shell Dlg"
+BEGIN
+ LTEXT "The timed benchmark takes about 5 minutes. Optional recording adds a separate 144-second replay afterward.", -1, 10, 8, 280, 27
+ AUTOCHECKBOX "Record replay to MP4 (off by default)", 1201, 10, 39, 280, 14
+ LTEXT "Video:", -1, 10, 60, 36, 12
+ COMBOBOX 1202, 48, 57, 242, 100, CBS_DROPDOWNLIST | WS_TABSTOP
+ AUTOCHECKBOX "Include generated weather audio (not microphone)", 1204, 10, 83, 280, 14
+ LTEXT "No size cap. Maximum resolution; no upscaling. Windows encoder support required. XP: text only. Settings restored afterward.", 1205, 10, 103, 280, 29
+ PUSHBUTTON "Export Latest Report", 1206, 10, 139, 115, 16
+ DEFPUSHBUTTON "Start Benchmark", IDOK, 134, 139, 96, 16
+ PUSHBUTTON "Cancel", IDCANCEL, 238, 139, 52, 16
+END

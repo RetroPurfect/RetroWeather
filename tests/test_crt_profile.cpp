@@ -1,0 +1,7 @@
+#include "../src/crt_profile.hpp"
+#include "../src/presentation.hpp"
+#include "../src/benchmark.hpp"
+#include "../src/recording_plan.hpp"
+#include <cassert>
+#include <iostream>
+int main(){int aspect=4,margin=8;assert(crt_profile::aspect(true,aspect)==0&&crt_profile::margin(true,margin)==0);assert(crt_profile::aspect(false,aspect)==4&&crt_profile::margin(false,margin)==8);assert(aspect==4&&margin==8);for(unsigned duration:{1,2,3,12,60}){assert(crt_profile::part(0,duration)==0);if(duration>1)assert(crt_profile::part(duration/2,duration)==1);}for(int stage=1;stage<=9;++stage){unsigned details=0,hourly=0;for(unsigned ms=0;ms<30000;ms+=250){int p=benchmark::page(stage,ms),part=crt_profile::part(ms%3000,3000);if(p==2)details|=1u<<part;if(p==7)hourly|=1u<<part;}assert(details==3&&hourly==3);}for(unsigned scene=0;scene<9;++scene){unsigned details=0,hourly=0;for(unsigned ms=scene*16000;ms<(scene+1)*16000;ms+=100){int p=recording_plan::page(ms),part=crt_profile::part((ms%16000)%1600,1600);if(p==2)details|=1u<<part;if(p==7)hourly|=1u<<part;}assert(details==3&&hourly==3);}assert(crt_profile::firstHour(0)==0&&crt_profile::firstHour(1)==6);assert(crt_profile::shortCondition(95)=="T-storms");for(auto geometry: {std::pair<int,int>{640,480},{1920,1080},{720,434}}){auto v=presentation::aspectFit(geometry.first,geometry.second,1,2);assert(v.width<=geometry.first&&v.height<=geometry.second&&v.x>=0&&v.y>=0);}std::cout<<"PASS: reversible CRT effective settings, six-hour panel selection, both subpanels in all timed/replay scenes and CRT viewport bounds.\n";}

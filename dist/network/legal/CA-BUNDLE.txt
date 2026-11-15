@@ -1,0 +1,8 @@
+Mozilla CA certificate bundle distributed by curl.
+https://curl.se/docs/caextract.html
+https://curl.se/docs/caextract.html#license
+https://www.mozilla.org/MPL/2.0/
+The complete unmodified PEM, including its upstream header, is in
+../curl-ca-bundle.crt and in the source pack's _packages/cacert.pem.
+The bundle is a conversion of Mozilla's certificate store, not original
+Retro Weather content. Certificate metadata retains its upstream terms.

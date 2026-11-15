@@ -1,0 +1,36 @@
+NETWORK HELPER — COMPANION SOURCE DOWNLOAD
+
+File: RetroWeather_v1.2.1_Network_Source.zip
+Publish this file alongside EVERY download of RetroWeather_Setup_v1.2.1.exe,
+with equal public access and no charge. Keep it accessible while distributing
+this binary; do not rely solely on a link to a moving upstream repository.
+The source pack is included in the full Public Release Pack's release folder.
+
+Contents:
+- curl-build-win32/, exact upstream recipe at commit 48b4085, including patches.
+- packages/, complete exact tarballs from dependencies.lst,
+  plus the recipe certificate bundle. All listed SHA256 digests verified.
+- prepare-cache.py: verifies the readable tarballs and fills the upstream cache.
+- shipped-ca-bundle.crt: exact data from the binary distribution.
+- PROVENANCE.json and SHA256SUMS.txt.
+- NETWORK_BUILD.txt, explains the upstream MSYS2/WinLibs build environment.
+No dependency source has been edited. Sources for the upstream full build are
+included too, so the original recipe can run unchanged even though the shipped
+binary is the smaller slim variant. Third-party copyrights/licenses remain in
+those archives. General-purpose build tools are acquired separately.
+
+The bundled binary matches upstream's curl-8.20.0-win-x86-slim.2026-05-02.zip.
+https://github.com/lordmulder/cURL-build-win32/releases/tag/2026-05-03
+https://github.com/lordmulder/cURL-build-win32/tree/48b4085
+
+Build on a modern Windows development machine, not XP. Follow the included
+upstream README.md; enter the MSYS2 MINGW32 shell, configure a suitable MSVCRT
+WinLibs i686 compiler, run python3 prepare-cache.py from the source pack root, then enter
+curl-build-win32 and run ./build.sh. The recipe builds full and slim
+variants; use the x86 slim output. Preserve the XP target/legacy-CPU guidance.
+Upstream sources, patches and package checksums are pinned. Exact byte-for-byte
+reproduction with an arbitrary newer compiler is not claimed; this session
+verified provenance, not a full independent rebuild of the third-party helper.
+
+The MIT player uses the helper as a separate executable. Its own complete source
+and build_windows.cmd are in RetroWeather_v1.2.1_Source.zip / the public repository.

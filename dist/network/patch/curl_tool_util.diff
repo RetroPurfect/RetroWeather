@@ -1,0 +1,60 @@
+ src/tool_util.c | 23 +++++++++++------------
+ src/tool_util.h |  2 +-
+ 2 files changed, 12 insertions(+), 13 deletions(-)
+
+diff --git a/src/tool_util.c b/src/tool_util.c
+index 5a8a3bc..6495ab9 100644
+--- a/src/tool_util.c
++++ b/src/tool_util.c
+@@ -108,27 +108,26 @@ int toolx_ftruncate_djgpp(int fd, curl_off_t where)
+ #endif
+ 
+ #ifdef _WIN32
+-FILE *tool_execpath(const char *filename, char **pathp)
++#define BUFFSIZE 512U
++FILE *tool_execpath(const TCHAR *filename, TCHAR **pathp)
+ {
+-  static char filebuffer[512];
++  static TCHAR filebuffer[BUFFSIZE];
+   unsigned long len;
+   /* Get the filename of our executable. GetModuleFileName is already declared
+    * via inclusions done in setup header file. We assume that we are using
+    * the ASCII version here.
+    */
+-  len = GetModuleFileNameA(0, filebuffer, sizeof(filebuffer));
+-  if(len > 0 && len < sizeof(filebuffer)) {
++  len = GetModuleFileName(0, filebuffer, BUFFSIZE);
++  if((len > 0) && (len < BUFFSIZE)) {
+     /* We got a valid filename - get the directory part */
+-    char *lastdirchar = strrchr(filebuffer, DIR_CHAR[0]);
++    TCHAR *lastdirchar = _tcsrchr(filebuffer, TEXT('\\'));
+     if(lastdirchar) {
+-      size_t remaining;
+-      *lastdirchar = 0;
+-      /* If we have enough space, build the RC filename */
+-      remaining = sizeof(filebuffer) - strlen(filebuffer);
+-      if(strlen(filename) < remaining - 1) {
+-        curl_msnprintf(lastdirchar, remaining, "%s%s", DIR_CHAR, filename);
++      *lastdirchar = TEXT('\0');
++      if (_tcslen(filebuffer) + _tcslen(filename) + 2U < BUFFSIZE) {
++        _tcscat(filebuffer, TEXT("\\"));
++        _tcscat(filebuffer, filename);
+         *pathp = filebuffer;
+-        return curlx_fopen(filebuffer, FOPEN_READTEXT);
++        return _tfopen(filebuffer, TEXT(FOPEN_READTEXT));
+       }
+     }
+   }
+diff --git a/src/tool_util.h b/src/tool_util.h
+index 12206ce..a43dd9d 100644
+--- a/src/tool_util.h
++++ b/src/tool_util.h
+@@ -35,7 +35,7 @@ int struplocompare(const char *p1, const char *p2);
+ int struplocompare4sort(const void *p1, const void *p2);
+ 
+ #ifdef _WIN32
+-FILE *tool_execpath(const char *filename, char **pathp);
++FILE *tool_execpath(const TCHAR *filename, TCHAR **pathp);
+ #endif
+ 
+ #endif /* HEADER_CURL_TOOL_UTIL_H */

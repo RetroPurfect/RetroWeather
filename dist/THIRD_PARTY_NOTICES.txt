@@ -1,0 +1,41 @@
+RETRO WEATHER v1.2.1 — THIRD-PARTY DISTRIBUTION NOTES
+
+Original player, icon/scenery drawing code and synthesized ambience: MIT.
+See LICENSE.txt, legal/Player-MIT.txt and assets/audio/generate_weather_audio.py.
+JSON parser: nlohmann/json, MIT; see src/JSON-LICENSE.txt and legal/JSON-MIT.txt.
+MinGW runtime: see legal/MinGW-runtime-copyright.txt (including runtime exception).
+
+NETWORK HELPER (SEPARATE EXECUTABLE)
+The unmodified curl.exe is from LoRd_MuldeR's cURL Windows x86 slim 8.20.0
+release, 2026-05-03 / recipe commit 48b4085. It is a separate process, not
+linked into the MIT player. SHA256:
+36d9b7e622c44c92008073e03c3bbe9928c56d828c59d9775d14377cf7172f93
+Its bytes were compared with the published x86 slim ZIP and match exactly.
+Upstream: https://github.com/lordmulder/cURL-build-win32
+
+Runtime components reported in its build_info.txt:
+- curl/libcurl 8.20.0: curl permissive license.
+- OpenSSL 3.5.6: Apache License 2.0.
+- zlib-ng 2.3.3, zlib compatibility mode: zlib license.
+- libidn2 2.3.8: library LGPLv3-or-later; tools/source files have their own terms.
+- libpsl 0.21.5: MIT/X11; its source includes separately credited data.
+- libiconv 1.19: library LGPLv2.1-or-later; tools may be GPLv3-or-later.
+- gettext 1.0: gettext-runtime libraries include LGPL terms; tools/source may
+  be GPL. Preserve the per-file/package license notices in the source archive.
+- WinLDAP and other Windows system APIs are supplied by Windows.
+CA trust bundle: Mozilla-derived certificate data; see network/legal/CA-BUNDLE.txt.
+
+Do not describe every file in this distribution as MIT. The original player
+is MIT; helper components retain their own licenses. Extra COPYING.LIB /
+COPYING.LESSER / OpenSSL NOTICE files have been added where present upstream.
+The complete network source bundle, including exact dependency source tarballs,
+patches and upstream build recipe, is supplied as a companion download.
+See NETWORK_SOURCE.txt for its name, provenance and redistribution instructions.
+The helper/source terms permit modification and reverse engineering of those
+components; this project imposes no extra prohibition on either.
+
+Installer engine: NSIS; see legal/NSIS-copyright.txt.
+Build tools (compiler, NSIS, Python/PyMeeus) are not installed with the player.
+No commercial weather artwork, music samples, proprietary Microsoft libraries,
+API secret or user configuration is included in this release.
+Data/API-service rights are separate: see DATA_LICENSES.txt.

@@ -1,0 +1,16 @@
+cURL for Windows v8.20.0-slim [2026-03-15-15-g48b4085]
+
+This build of cURL was kindly provided by LoRd_MuldeR <mulder2@gmx.de>
+https://github.com/lordmulder/cURL-build-win32
+
+[cURLinfo]
+curl 8.20.0 (i686-w64-mingw32) libcurl/8.20.0 OpenSSL/3.5.6 zlib/1.3.1.zlib-ng libidn2/2.3.8 libpsl/0.21.5 WinLDAP
+Release-Date: 2026-04-29
+Protocols: dict file ftp ftps gopher gophers http https imap imaps ipfs ipns ldap ldaps mqtt mqtts pop3 pop3s rtsp smtp smtps telnet tftp ws wss
+Features: alt-svc HSTS HTTPS-proxy IDN IPv6 Largefile libz PSL SSL threadsafe TLS-SRP Unicode UnixSockets
+
+[Platform]
+MINGW32_NT-10.0-20348 3.6.9-aa532e7b.x86_64 2026-04-21 17:18 UTC x86_64 Msys
+
+[Compiler]
+gcc version 15.2.0 (MinGW-W64 i686-msvcrt-posix-dwarf, built by Brecht Sanders, r6) 

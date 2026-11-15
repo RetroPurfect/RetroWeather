@@ -1,0 +1,51 @@
+[
+  {
+    "file": "01_Clear_Day.wav",
+    "seconds": 17.0,
+    "sample_rate": 22050,
+    "rms": 0.026204360403455154,
+    "peak": 0.1917364700385393
+  },
+  {
+    "file": "02_Clear_Night.wav",
+    "seconds": 17.0,
+    "sample_rate": 22050,
+    "rms": 0.02117735943268859,
+    "peak": 0.12354480382269653
+  },
+  {
+    "file": "03_Cloudy.wav",
+    "seconds": 17.0,
+    "sample_rate": 22050,
+    "rms": 0.048907886377071524,
+    "peak": 0.29419854845275645
+  },
+  {
+    "file": "04_Rain.wav",
+    "seconds": 17.0,
+    "sample_rate": 22050,
+    "rms": 0.0712256870549561,
+    "peak": 0.3351601681231181
+  },
+  {
+    "file": "05_Snow.wav",
+    "seconds": 17.0,
+    "sample_rate": 22050,
+    "rms": 0.036056329963505274,
+    "peak": 0.21361540612293659
+  },
+  {
+    "file": "06_Thunderstorm.wav",
+    "seconds": 17.0,
+    "sample_rate": 22050,
+    "rms": 0.08697378155714032,
+    "peak": 0.45287077440661505
+  },
+  {
+    "file": "07_Fog.wav",
+    "seconds": 17.0,
+    "sample_rate": 22050,
+    "rms": 0.01768803017327481,
+    "peak": 0.09906212165404997
+  }
+]

@@ -1,0 +1,51 @@
+ lib/curl_setup.h | 15 +++++++++------
+ lib/hostip.c     |  8 ++++----
+ 2 files changed, 13 insertions(+), 10 deletions(-)
+
+diff --git a/lib/curl_setup.h b/lib/curl_setup.h
+index 9e293c2..be1d2fa 100644
+--- a/lib/curl_setup.h
++++ b/lib/curl_setup.h
+@@ -681,14 +681,17 @@
+ #endif /* _WIN32 */
+ 
+ /* We want to use mutex when available. */
+-#if defined(HAVE_THREADS_POSIX) || defined(_WIN32)
+-#define USE_MUTEX
+-#endif
++//#if defined(HAVE_THREADS_POSIX) || defined(_WIN32)
++//#define USE_MUTEX
++//#endif
++#undef USE_MUTEX
+ 
+ /* threaded resolver is the only feature requiring threads. */
+-#ifdef USE_RESOLV_THREADED
+-#define USE_THREADS
+-#endif
++//#ifdef USE_RESOLV_THREADED
++//#define USE_THREADS
++//#endif
++#undef USE_THREADS
++#undef USE_RESOLV_THREADED
+ 
+ /* ---------------------------------------------------------------- */
+ /*             resolver specialty compile-time defines              */
+diff --git a/lib/hostip.c b/lib/hostip.c
+index 85f53c4..165f3b8 100644
+--- a/lib/hostip.c
++++ b/lib/hostip.c
+@@ -986,10 +986,10 @@ CURLcode Curl_resolv(struct Curl_easy *data,
+   }
+ #endif /* !USE_ALARM_TIMEOUT */
+ 
+-#ifndef CURLRES_ASYNCH
+-  if(timeout_ms)
+-    infof(data, "timeout on name lookup is not supported");
+-#endif
++//#ifndef CURLRES_ASYNCH
++//  if(timeout_ms)
++//    infof(data, "timeout on name lookup is not supported");
++//#endif
+ 
+   return hostip_resolv(data, dns_queries, hostname, port, transport,
+                        for_proxy, timeout_ms, TRUE, presolv_id, pdns);
